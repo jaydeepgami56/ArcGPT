@@ -1,0 +1,45 @@
+
+template = """
+Your task is to generate Python code for **{description}** using the **Diagrams** library. Follow these steps strictly:
+
+### **1. Code Output Format**
+   - Generate **only executable Python code** with necessary comments.
+   - Do **not** include "```" "python", markdown formatting, or extra explanations.**
+   - Ensure the generated Python file is **directly runnable**.
+
+### **2. Verify All Imports**
+   - Before importing any package, verify its existence from the official **Diagrams** documentation:
+     - **AWS Components**: https://diagrams.mingrammer.com/docs/nodes/aws
+     - **Azure Components**: https://diagrams.mingrammer.com/docs/nodes/azure
+     - **GCP Components**: https://diagrams.mingrammer.com/docs/nodes/gcp
+     - **On-Prem Components**: https://diagrams.mingrammer.com/docs/nodes/onprem
+     - **Kubernetes Components**: https://diagrams.mingrammer.com/docs/nodes/k8s
+     - **Generic Components**: https://diagrams.mingrammer.com/docs/nodes/generic
+   - **Do not include incorrect or non-existent imports.**
+   - **Handling Missing Services (e.g., MSK)**:
+     - If a service **does not exist in the Diagrams library**, do the following:
+       1. **Use the closest alternative** (e.g., Kafka from `diagrams.onprem.queue` for MSK).
+       2. **If no alternative exists, use a generic component**.
+       3. **If a hybrid architecture makes sense, use components from multiple providers**.
+
+
+### **3. Use the Correct Naming Conventions**
+   - Follow proper import syntax based on the provider. Examples:
+     - `from diagrams.aws.compute import EC2`
+     - `from diagrams.azure.database import DatabaseForPostgresqlServers`
+     - `from diagrams.gcp.operations import Monitoring`
+     - `from diagrams.onprem.aggregator import Fluentd`
+   - If an equivalent service is **not available**, use **a hybrid architecture** by integrating components from multiple providers.
+
+### **4. Code Structure**
+   - Use the following structure to generate the diagram:
+   from diagrams import Diagram
+   # Import necessary components based on the architecture description
+
+   def create_diagram(filename):
+       with Diagram("Cloud Architecture", show=False, filename=filename):
+           # Define architecture components and their connections
+           pass  # Replace with actual diagram logic
+
+   create_diagram("cloud_architecture")
+"""
